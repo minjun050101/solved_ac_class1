@@ -1,0 +1,66 @@
+// 변형, 최댓값만 출력하는 경우 std::max_element 쓸 수 있음
+#ifdef max_of_nine_numbers_1
+#include <iostream>
+#include <algorithm>
+
+int main() {
+
+	// 9칸짜리 배열을 생성하여 배열을 입력받음
+	int arr[9];
+	for (int i = 0; i < 9; i++) {
+		std::cin >> arr[i];
+	}
+
+	std::cout << *std::max_element(arr, arr + 9);
+
+}
+#endif
+
+// 이 아래는 문제에서 요구하는 대로 최댓값과, 그것이 배열에서 몇 번째 순서인지(!=인덱스) 출력
+
+// sol1: max_element를 활용한 출력, 기본 배열 활용
+#ifdef max_of_nine_number_2_sol1
+#include <iostream>
+#include <algorithm>
+
+int main() {
+
+	// 9칸짜리 배열을 생성하여 배열을 입력받음
+	int arr[9];
+	for (int i = 0; i < 9; i++) {
+		std::cin >> arr[i];
+	}
+
+	// 출력
+	std::cout << *std::max_element(arr, arr + 9) << "\n"; // 배열에서의 최댓값 출력
+	std::cout << std::max_element(arr, arr + 9) - arr + 1; // std::max_element(arr, arr + 9) - arr은 최댓값 원소의 인덱스
+
+}
+#endif
+
+// sol2: std::sort의 원소가 pair면 첫 번째 원소를 기준으로 정렬함, vector 활용
+#ifdef max_of_nine_number_2_sol2
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+int main() {
+
+	// vector에 pair<입력값, 입력 순서>를 저장함
+	std::vector<std::pair<int, int>> arr;
+
+	int order_of_input = 1; // 입력 순서
+
+	// vector에 pair를 push_back, std::make_pair 사용
+	for (int i = 0; i < 9; i++) {
+		int tmp = 0;
+		std::cin >> tmp;
+		arr.push_back(std::make_pair(tmp, order_of_input)); // 입력 받은 수와 순서를 저장함, std::make_pair.
+		order_of_input++;
+	}
+
+	std::sort(arr.begin(), arr.end()); // 원소가 pair면 첫 번째 원소를 기준으로 sort함
+	std::cout << arr.back().first << "\n" << arr.back().second;
+
+}
+#endif
