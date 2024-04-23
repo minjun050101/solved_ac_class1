@@ -1,0 +1,81 @@
+// ** 가독성을 위해 필요 없는 입력을 삭제하였음. 그대로 제출하면 '틀렸습니다' 뜸
+// 기존 문제는 for문을 생각하고 N을 준 듯
+
+// string으로 입력 받아 각 원소에 -'0' 하여 합하기
+#ifdef sum_of_num
+#include <iostream>
+
+int main() {
+
+	// N개의 숫자를 str에 공백 없이 입력 받음
+	std::string str;
+	std::cin >> str;
+
+	// 문자열의 각 자리에 있는 수를 더함
+	int sum = 0;
+	for (int i = 0; i < str.length(); i++) {
+		sum += str[i] - '0';
+	}
+
+	// 숫자의 합 출력
+	std::cout << sum;
+
+}
+#endif
+
+// iny로 N을 입력 받는 경우. STL의 std::to_string으로 int to string 변환, <string> 헤더 필요. 이 경우에도 입력은 한 번만 받음.
+#ifdef sum_of_num_sol2
+#include <iostream>
+#include <string>
+
+int main() {
+
+	// N개의 숫자를 공백 없이 입력 받아 str에 저장함
+	int N; std::cin >> N;
+	std::string str = std::to_string(N);
+
+	// 문자열의 각 자리에 있는 수를 더함
+	int sum = 0;
+	for (int i = 0; i < str.length(); i++) {
+		sum += str[i] - '0';
+	}
+
+	// 숫자의 합 출력
+	std::cout << sum;
+}
+#endif
+/*
+*
+	다음은 std::to_string의 오버로드 모음. 그냥 숫자면 다 가능
+	string to_string (int num);
+	string to_string (long num);
+	string to_string (long long num);
+	string to_string (unsigned num);
+	string to_string (unsigned long num);
+	string to_string (unsigned long long num);
+	string to_string (float num);
+	string to_string (double num);
+	string to_string (long double num);
+* 
+*/
+
+
+// 또는 입력한 int의 자릿수 합을 원한다면, int N에 대해서 연산자 '/', '%'를 사용할 수 있음.
+#ifdef sum_of_num_sol3
+#include <iostream>
+
+int main() {
+
+	int N; std::cin >> N;
+
+	int sum = 0;
+	int ten_power = 10;
+	while (ten_power <= N * 10) {
+		sum += (N % ten_power) / (ten_power / 10);
+		ten_power *= 10;
+	}
+
+	std::cout << sum;
+
+}
+#endif
