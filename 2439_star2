@@ -1,0 +1,91 @@
+// 원본 문제, 피라미드 삼각형을 정방향 출력한다
+#ifdef star2_1 
+#include <iostream>
+
+int main() {
+
+	int N; std::cin >> N; // N 줄의 피라미드 생성
+
+	for (int row = 1; row <= 5; row++) { // 각 row에 대한 루프, N개의 row
+
+		for (int i = 0; i < N - row; i++) { // 공백을 N-row번 출력함, 예를 들어 N == 5, row == 1일 때 4번 출력
+			std::cout << ' ';
+		}
+
+		for (int i = 0; i < 2 * row - 1; i++) { // *을 2*row - 1번 출력함, *의 개수는 홀수 등차수열을 따름 {1, 3, 5, 7 ..  , 2N -1}.. 
+			std::cout << '*';
+		}
+
+		std::cout << "\n"; // 개행
+
+	}
+}
+
+
+#endif
+
+// 변형, 피라미드 삼각형을 역방향 출력한다
+#ifdef star2_2 
+#include <iostream>
+
+int main() {
+	int N; std::cin >> N; // N 줄의 피라미드 생성
+
+	for (int row = N; row >= 1; row--) { // row를 역순으로 반복, N개의 row
+
+		for (int i = N - row; i > 0; i--) { // 공백을 N-row번 출력하고, 처음에 N - row == 0
+			std::cout << ' ';
+		}
+
+		for (int i = 2 * row - 1; i > 0; i--) { // *을 2*row - 1 번 출력함. 처음에는 2*N-1개
+			std::cout << '*';
+		}
+
+		std::cout << "\n"; // 개행
+
+	}
+}
+
+#endif
+
+// 변형, 피라미드 삼각형을 대칭 출력한다
+#ifdef star2_3 
+#include <iostream>
+
+int main() {
+
+	int N; std::cin >> N; // N 줄의 피라미드 생성
+
+	for (int row = 1; row <= 5; row++) { // 각 row에 대한 루프, N개의 row
+
+		for (int i = 0; i < N - row; i++) { // 공백을 N-row번 출력함, 예를 들어 N == 5, row == 1일 때 4번 출력
+			std::cout << ' ';
+		}
+
+		for (int i = 0; i < 2 * row - 1; i++) { // *을 2*row - 1번 출력함, *의 개수는 홀수 등차수열을 따름 {1, 3, 5, 7 ..  , 2N -1}.. 
+			std::cout << '*';
+		}
+
+		std::cout << "\n"; // 개행
+
+	}
+
+
+	for (int row = N; row >= 1; row--) { // row를 역순으로 반복, N개의 row
+
+		if (row == N) continue; // continue 하지 않으면 제일 긴 줄을 두 번 출력함
+
+		for (int i = N - row; i > 0; i--) { // 공백을 N-row번 출력하고, 처음에 N - row == 0
+			std::cout << ' ';
+		}
+
+		for (int i = 2 * row - 1; i > 0; i--) { // *을 2*row - 1 번 출력함. 처음에는 2*N-1개
+			std::cout << '*';
+		}
+
+		std::cout << "\n"; // 개행
+
+	}
+
+}
+#endif
